@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vbod Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#features" class="nav-link">Fitur</a></li>
+                    <li><a href="#pricing" class="nav-link">Harga</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id="hero">
+                <h1>Pembuatan Website yang Profesional</h1>
+                <p>Buat website yang sesuai dengan kebutuhan Anda dengan harga yang terjangkau.</p>
+                <button class="btn-cta" id="whatsapp-button">Buat Website Sekarang</button>
+            </section>
+            <section id="features">
+                <h2>Fitur yang Kami Tawarkan</h2>
+                <ul>
+                    <li>
+                        <i class="fas fa-desktop"></i>
+                        <h3>Desain Responsif</h3>
+                        <p>Website yang kami buat dapat diakses di semua perangkat.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-lock"></i>
+                        <h3>Keamanan yang Tinggi</h3>
+                        <p>Kami menggunakan teknologi keamanan yang terbaru untuk melindungi website Anda.</p>
+                    </li>
+                    <li>
+                        <i class="fas fa-rocket"></i>
+                        <h3>Performa yang Cepat</h3>
+                        <p>Website yang kami buat dapat diakses dengan cepat dan stabil.</p>
+                    </li>
+                </ul>
+            </section>
+            <section id="pricing">
+                <h2>Harga yang Kompetitif</h2>
+                <ul>
+                    <li>
+                        <h3>Paket Basic</h3>
+                        <p>Rp 500.000</p>
+                        <ul>
+                            <li>Desain responsif</li>
+                            <li>Keamanan yang tinggi</li>
+                            <li>Performa yang cepat</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Paket Pro</h3>
+                        <p>Rp 1.000.000</p>
+                        <ul>
+                            <li>Desain responsif</li>
+                            <li>Keamanan yang tinggi</li>
+                            <li>Performa yang cepat</li>
+                            <li>Fitur tambahan (e-commerce, blog, dll)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section id="contact">
+                <h2>Kontak Kami</h2>
+                <form id="contact-form">
+                    <input type="text" placeholder="Nama" id="name" required>
+                    <input type="email" placeholder="Email" id="email" required>
+                    <textarea placeholder="Pesan" id="message" required></textarea>
+                    <button type="submit" class="btn-cta">Kirim Pesan</button>
+                </form>
+                <p id="notification" style="display:none;">Pesan terkirim!</p>
+            </section>
+            
+            <!-- Include EmailJS SDK -->
+            <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+            <script>
+                (function(){
+                    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS user ID
+                })();
+            </script>
+            
+        </main>
+        <footer>
+            <p>&copy; 2024 Vbod Website</p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('notification').style.display = 'block';
+            setTimeout(function() {
+                document.getElementById('notification').style.display = 'none';
+            }, 3000);
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get form values
+    var name = document.getElementById('name').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+
+    // Define the EmailJS parameters
+    var templateParams = {
+        name: name,
+        email: email,
+        message: message
+    };
+
+    // Send the email using EmailJS
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            document.getElementById('notification').style.display = 'block';
+        }, function(error) {
+            console.log('FAILED...', error);
+        });
+
+    // Clear the form fields
+    document.getElementById('contact-form').reset();
+});
+
+
+        document.getElementById('whatsapp-button').addEventListener('click', function() {
+            var phoneNumber = '+62895358165040'; 
+            var message = 'Halo, saya ingin membuat website.';
+            var whatsappUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
